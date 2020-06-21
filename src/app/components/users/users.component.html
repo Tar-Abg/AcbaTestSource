@@ -1,0 +1,60 @@
+<div class="card mb-5">
+  <h5 class="card-header text-center font-weight-bold py-2">Users</h5>
+  <div class="card-body p-0">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Name</th>
+            <th class="text-center">Username</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Phone</th>
+            <th class="text-center">city</th>
+            <th class="text-center">
+              <span *ngIf="!deleteSubmited && !checkedUser" class="d-flex justify-content-center text-success cursor"
+                (click)="addUser()" title="add new user">
+                <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
+              </span>
+              <button class="btn btn-danger removeBtn" (click)="deleteCheckedUsers()"
+                *ngIf="!deleteSubmited && checkedUser">Remove</button>
+              <span *ngIf="deleteSubmited"><i class="fa fa-spinner fa-spin " aria-hidden="true"></i>
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <h3 *ngIf="errorMessage" class="text-danger">fill the empty filds</h3>
+          <tr *ngFor="let user of users">
+            <td class="pt-3-half" #name contenteditable="true" (dblclick)="navigateToUser(user.id)"
+              [textContent]="user.name" (input)="user.name = name.innerText; markAsTuched(user)">{{user.name}}</td>
+            <td class="pt-3-half" #username contenteditable="true" (dblclick)="navigateToUser(user.id)"
+              [textContent]="user.username" (input)="user.username = username.innerText; markAsTuched(user)">
+              {{user.username}}</td>
+            <td class="pt-3-half" #email contenteditable="true" (dblclick)="navigateToUser(user.id)"
+              [textContent]="user.email" (input)="user.email = email.innerText; markAsTuched(user)">{{user.email}}</td>
+            <td class="pt-3-half" #phone contenteditable="true" (dblclick)="navigateToUser(user.id)"
+              [textContent]="user.phone" (input)="user.phone = phone.innerText; markAsTuched(user)">{{user.phone}}</td>
+            <td class="pt-3-half" #city contenteditable="true" (dblclick)="navigateToUser(user.id)"
+              [textContent]="user.address.city" (input)="user.address.city = city.innerText; markAsTuched(user)">
+              {{user.address.city}}</td>
+            <td class="px-4">
+              <button (click)="deleteUser(user)" *ngIf="touchedUserId !== user?.id && !allPendings.includes(user?.id)"
+                type="button" class="btn btn-danger btn-rounded btn-sm my-0">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+              <button (click)="saveUser(user)"
+                *ngIf="touchedUserId == user.id && !allPendings.includes(user.id) && checkInputs(user)" type="button"
+                class="btn btn-success btn-rounded btn-sm my-0">Save</button>
+              <span *ngIf="allPendings.includes(user?.id)"><i class="fa fa-spinner fa-spin " aria-hidden="true"></i>
+              </span>
+              <input *ngIf="!allPendings.includes(user?.id)" type="checkbox" (change)="markChecked(user, $event)"
+                class="form-check-input mx-2" [name]="'userChecked'+user.id">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-warning float-right" *ngIf="filtred" (click)="cancelFilter()">cancel the filter</button>
+    </div>
+  </div>
+</div>

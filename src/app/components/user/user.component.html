@@ -1,0 +1,176 @@
+<div class="container mt-4 mb-5">
+  <div class="row flex-lg-nowrap">
+    <div class="col">
+
+      <div class="row">
+
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-body">
+              <p *ngIf="errMessage" class="text-center text-danger">{{errMessage}}</p>
+              <div class="e-profile" *ngIf="!errMessage">
+                <ul class="nav nav-tabs">
+                  <li class="nav-item"><a href="" class="active nav-link">{{userForm.controls.name.value}}'s
+                      information</a></li>
+                </ul>
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+
+                    <form class="form" [formGroup]="userForm">
+                      <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>name</label>
+                            <input type="text" formControlName="name" class="form-control"
+                              [ngClass]="{ 'is-invalid': userForm.controls.name.errors && userForm.controls.name.touched}"
+                              name="name">
+                            <div class="invalid-feedback">
+                              <div *ngIf="userForm.controls.name.errors && userForm.controls.name.touched">name is
+                                required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>username</label>
+                            <input type="text" formControlName="username" class="form-control"
+                              [ngClass]="{ 'is-invalid': userForm.controls.username.errors && userForm.controls.username.touched}"
+                              name="username">
+                            <div class="invalid-feedback">
+                              <div *ngIf="userForm.controls.username.errors && userForm.controls.username.touched">
+                                username is required</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>email</label>
+                            <input type="text" formControlName="email" class="form-control"
+                              [ngClass]="{ 'is-invalid': userForm.controls.email.errors && userForm.controls.email.touched}"
+                              name="name">
+                            <div class="invalid-feedback">
+                              <div *ngIf="userForm.controls.email.errors && userForm.controls.email.touched">email is
+                                required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>phone</label>
+                            <input type="text" formControlName="phone" class="form-control"
+                              [ngClass]="{ 'is-invalid': userForm.controls.phone.errors && userForm.controls.phone.touched}"
+                              name="username">
+                            <div class="invalid-feedback">
+                              <div *ngIf="userForm.controls.phone.errors && userForm.controls.phone.touched">phone is
+                                required</div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>website</label>
+                            <input type="text" formControlName="website" class="form-control"
+                              [ngClass]="{ 'is-invalid': userForm.controls.website.errors && userForm.controls.website.touched}"
+                              name="name">
+                            <div class="invalid-feedback">
+                              <div *ngIf="userForm.controls.website.errors && userForm.controls.website.touched">website
+                                is required</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" formGroupName="address">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>city</label>
+                            <input type="text" formControlName="city" class="form-control"
+                              [ngClass]="{ 'is-invalid': userForm.get(['address', 'city']).errors && userForm.get(['address', 'city']).touched}"
+                              name="city">
+                            <div class="invalid-feedback">
+                              <div
+                                *ngIf="userForm.get(['address', 'city']).errors && userForm.get(['address', 'city']).touched">
+                                city is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>street</label>
+                            <input type="text" formControlName="street" class="form-control"
+                              [ngClass]="{ 'is-invalid': userForm.get(['address', 'street']).errors && userForm.get(['address', 'street']).touched}"
+                              name="street">
+                            <div class="invalid-feedback">
+                              <div
+                                *ngIf="userForm.get(['address', 'street']).errors && userForm.get(['address', 'street']).touched">
+                                street is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>zipcode</label>
+                            <input type="text" formControlName="zipcode" class="form-control" name="zipcode">
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>suite</label>
+                            <input type="text" formControlName="suite" class="form-control" name="suite">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" formGroupName="company">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>company name</label>
+                            <input type="text" formControlName="compName" class="form-control" name="compName">
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="form-group">
+                            <label>company catchPhrase</label>
+                            <input type="text" formControlName="catchPhrase" class="form-control" name="catchPhrase">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <button style="width: 125px;" [disabled]="!this.userForm.valid || this.userForm.pristine"
+                            class="btn btn-success" type="button" (click)="onSubmit()">
+                            <span *ngIf="!pending">save changes</span>
+                            <span *ngIf="pending">
+                              <i class="fa fa-spinner fa-spin " aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-3 mb-3">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="px-xl-3">
+                <button class="btn btn-block btn-success" [routerLink]="['/main']">
+                  back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.cursor{
+    cursor: pointer;
+}
+
+input[type=checkbox] {
+    position: relative;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+}
+.removeBtn{
+    height: 2rem;
+    padding-top: 4px;
+}
